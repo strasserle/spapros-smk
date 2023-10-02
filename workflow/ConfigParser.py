@@ -27,7 +27,8 @@ DEFAULT_PARAMETERS = {
     "selection": {
         "n": 100,
         "ct_key": "celltype",
-        "gene_key": None,
+        "gene_key": "highly_variable",
+        "batch_key": None,
         "method_specific_processing": True, # wether to use the method specific normalization/filtering etc. 
     },
 }
@@ -73,6 +74,7 @@ DEFAULT_PARAMETERS_TYPES = {
         "n": int,
         "ct_key": str,
         "gene_key": str,
+        "batch_key": str,
         "method_specific_processing": bool,
     },
 }
