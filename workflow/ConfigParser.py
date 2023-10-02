@@ -17,7 +17,7 @@ DEFAULT_PARAMETERS = {
     "dataset": {
         "processing": None, # options: [None, "lognorm"]
         "ct_key": "celltype", # only relevant if e.g. n_cts is specified
-        "n_cts" : None,
+        "n_cts": None,
         "cells_per_ct_n_seeds" : 1, # Pseudo parameter
         "cells_per_ct_seed": 0,
         "cells_per_ct": None,
@@ -88,7 +88,7 @@ SELECTION_METHODS = [
     'scpnmf', 'spaproscto',
 ]
 EVALUATION_METRICS = [
-    "cluster_similarity", "knn_overlap", "forest_clfs", "marker_corr", "gene_corr",
+    "cluster_similarity", "knn_overlap", "knn_overlap_X", "forest_clfs", "marker_corr", "gene_corr",
 ]
 
 class ConfigParser():
