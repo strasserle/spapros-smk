@@ -1,7 +1,7 @@
 
 from ConfigParser import ConfigParser
 
-configfile: './config/config.yaml'
+configfile: './config/config_batch_aware.yaml'
 
 parser = ConfigParser(config)
 final_files = parser.file_names["pipeline_output"] 
@@ -38,7 +38,6 @@ rule process_data:
     shell:
         "python workflow/scripts/process_data.py --data {input} -o {output} -id {wildcards.data_id} -f {params.data_params_file}"
 
-
 #rule selection_py: # spapros, asfs, cosg, nsforest, scmer, triku, smash
 #    input:
 #        expand("{data_dir}/{{dataset}}_{{data_id}}.h5ad", data_dir=config['DATA_DIR_TMP'])
@@ -62,7 +61,8 @@ rule selection_spapros:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/spapros_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        "envs/venv_spapros.yaml"
+        # "envs/venv_spapros.yaml"
+        "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
     log:
         "logs/selections/spapros_{selection_id}_{dataset}_{data_id}.txt"
     params:
@@ -72,7 +72,7 @@ rule selection_spapros:
         "python workflow/scripts/selection.py "
         "--data {input} "
         "-o {output} "
-        "--method spapros  "
+        "--method spapros "
         "-id {wildcards.selection_id} "
         "-f {params.selection_params_file} "
         "-s {params.save_method_specific_output}"

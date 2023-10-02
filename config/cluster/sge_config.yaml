@@ -1,0 +1,28 @@
+cluster:
+  qsub
+      -N {rule}$$
+      -o logs/{rule}$$.log
+      -e logs/{rule}$$.log
+      -l vf={resources.mem_mb}
+      -P {resources.project}
+      -wd {resources.workdir}
+      -V
+default-resources:
+      - mem_mb=64000
+      - project=long_project
+      - workdir=.
+max-threads: 12
+use-conda: True
+conda-frontend: conda
+use-singularity: True
+singularity-args:
+      --bind /home/:/home/,/lustre/:/lustre/,/localscratch/:/localscratch/
+jobs: 10
+keep-going: True
+restart-times: 2
+rerun_triggers: mtime
+cluster-cancel: qdel
+cluster-status: qstat -j
+keep-incomplete: True
+keep-target-files: True
+rerun-incomplete: True
