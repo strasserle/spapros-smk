@@ -6,6 +6,7 @@ logs/
 results/
 */dev_*.ipynb
 snakemake.sbatch
+*_icb.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
