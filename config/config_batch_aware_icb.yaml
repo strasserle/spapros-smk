@@ -10,7 +10,8 @@ PRELIMINARY_EVAL_SUMMARY: False # Whether to just summarise the currently availa
 selections:
   batch_aware:
     datasets: [pbmc1k-raw]
-    #dataset_param:
+    dataset_param:
+      processing: [lognorm]
     #  cells_per_ct_n_seeds : [4]
     selection_param:
       n: [25] #[5] #[75]  #,100,150]
