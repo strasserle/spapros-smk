@@ -5,7 +5,7 @@ import os
 configfile: 'config/config_batch_aware_icb.yaml'
 
 print("cwd: ", os.getcwd())
-print("config file: ", os.path.abspath(snakemake.config["configfile"]))
+print("config file: ", os.path.abspath(config["configfile"]))
 
 parser = ConfigParser(config)
 final_files = parser.file_names["pipeline_output"] 
