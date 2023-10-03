@@ -2,12 +2,11 @@
 from ConfigParser import ConfigParser
 import os
 
-configfile: 'config/config_batch_aware_icb.yaml'
+configfile = 'config/config_batch_aware_icb.yaml'
+configfile: configfile
 
 print("cwd: ", os.getcwd())
-# print("config file: ", os.path.abspath(config["configfile"]))
-print(config)
-print(snakemake.configfile)
+print("config file: ", os.path.abspath(configfile))
 
 parser = ConfigParser(config)
 final_files = parser.file_names["pipeline_output"] 
