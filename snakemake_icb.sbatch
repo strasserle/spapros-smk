@@ -15,7 +15,7 @@ export SINGULARITY_TMPDIR="/lustre/groups/ml01/workspace/lena.strasser/tmp"
 export APPTAINER_TMPDIR="/lustre/groups/ml01/workspace/lena.strasser/tmp"
 
 # submit main snakemake job
-snakemake --profile config/cluster/ -n
+snakemake --profile config/cluster/config_icb -n
 # and in cmd line: bash snakemake_icb.sbatch
 
 # or submit jobs without main snakemake job in cmd line using:
