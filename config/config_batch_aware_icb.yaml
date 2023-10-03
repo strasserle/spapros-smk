@@ -16,7 +16,8 @@ selections:
       n: [25] #[5] #[75]  #,100,150]
       method_specific_processing: [True] #[True, False]
 #      gene_key: ["highly_variable"]
-      batch_key: "assay_sc" # the default behaviour is batch_key=None
+      ct_key: ["cell_type"]
+      batch_key: ["assay_sc"] # the default behaviour is batch_key=None
     methods:
       spapros
 
