@@ -1,7 +1,7 @@
 
 from ConfigParser import ConfigParser
 
-configfile: './config/config_batch_aware.yaml'
+configfile: '../config/config_batch_aware_icb.yaml'
 
 parser = ConfigParser(config)
 final_files = parser.file_names["pipeline_output"] 
@@ -26,8 +26,6 @@ rule all:
 
 rule process_data:
     threads: 12
-    resources:
-        mem_mb = lambda wildcards, attempt: 64000 * (attempt + int(attempt > 1))
     conda:
         "envs/base_env.yaml"
     input:
