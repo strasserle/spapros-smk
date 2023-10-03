@@ -1,5 +1,8 @@
 
 from ConfigParser import ConfigParser
+import os
+
+print("cwd: ", os.getcwd())
 
 configfile: '../config/config_batch_aware_icb.yaml'
 
