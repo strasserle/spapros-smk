@@ -2,11 +2,11 @@
 from ConfigParser import ConfigParser
 import os
 
-configfile = 'config/config_batch_aware_icb.yaml'
-configfile: configfile
+conf_file = 'config/config_batch_aware_icb.yaml'
+configfile: conf_file
 
 print("cwd: ", os.getcwd())
-print("config file: ", os.path.abspath(configfile))
+print("config file: ", os.path.abspath(conf_file))
 
 parser = ConfigParser(config)
 final_files = parser.file_names["pipeline_output"] 
