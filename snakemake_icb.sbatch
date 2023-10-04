@@ -9,7 +9,8 @@
 #SBATCH --nice=0
 #SBATCH -p cpu_p
 
-conda activate try_sfaira
+source $HOME/.bashrc
+conda activate spapros-smk
 
 export SINGULARITY_TMPDIR="/lustre/groups/ml01/workspace/lena.strasser/tmp"
 export APPTAINER_TMPDIR="/lustre/groups/ml01/workspace/lena.strasser/tmp"
