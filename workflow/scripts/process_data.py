@@ -1,6 +1,7 @@
 import argparse
 import pandas as pd
 import scanpy as sc
+import numpy as np
 from scipy.sparse import issparse, csr_matrix
 from util import normalise, get_highly_variable, subset_to_n_celltypes, sample_n_cells_per_ct, bootstrap_sample
 
@@ -35,6 +36,7 @@ def main():
     cells_per_ct_seed = int(params["cells_per_ct_seed"]) if params["cells_per_ct_seed"] != "None" else None
     cells_per_ct = int(params["cells_per_ct"]) if params["cells_per_ct"] != "None" else None
     bootstrap_seed = int(params["bootstrap_seed"]) if params["bootstrap_seed"] != "None" else None
+    permutation = str(params("permutation")) if params["permutation"] != "None" else None
     
     # Load data
     adata = sc.read(args.data)
@@ -56,6 +58,15 @@ def main():
         adata.uns["processing"] = "lognorm"
     else:
         adata.uns["processing"] = "raw"
+
+    # Subset for permutation experiment
+    if permutation is not None:
+        permutation_file, permutation_id = permutation.split(":")
+        permutations = pd.read_csv(permutation_file)
+        if permutation_id not in permutations.columns:
+            raise ValueError(f"Permutation id {permutation_id} not in {permutation_file}^.")
+        permutation_mask = permutations[permutation_id]
+        adata = adata[adata.obs[permutation_mask]]
     
     # Subset to n cell types
     if n_cts is not None:
@@ -68,7 +79,10 @@ def main():
     # Bootstrap sample of dataset, keep cell type proportions
     if bootstrap_seed is not None:
         adata = bootstrap_sample(adata, obs_key=ct_key, noise_level=1e-3, seed=bootstrap_seed, obs_names_unique=True)
-    
+
+    # Prohibit error in (probably old version of) scanpy.rank_genes_groups
+    if "log1p" in adata.uns and "base" not in adata.uns["log1p"]:
+        adata.uns["log1p"]["base"] = np.e
     
     # Save data
     if not issparse(adata.X):
