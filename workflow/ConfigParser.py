@@ -1,4 +1,4 @@
-
+import os
 from typing import List, Tuple, Optional
 from pathlib import Path
 import itertools
@@ -23,6 +23,9 @@ DEFAULT_PARAMETERS = {
         "cells_per_ct": None,
         "bootstrap_n_seeds": None, # Pseudo parameter
         "bootstrap_seed": None,
+        "permutations": None, # this param can be used for the permutation experiment: file with adata.obs.index as
+                              # index and one boolean column for each permutation
+
     },
     "selection": {
         "n": 100,
@@ -43,6 +46,7 @@ PSEUDO_PARAM_TO_PARAM = {
     "dataset": {
         "cells_per_ct_n_seeds": "cells_per_ct_seed",
         "bootstrap_n_seeds": "bootstrap_seed",
+        "permutations": "permutation"
     },
     "selection": {},
 }
@@ -68,9 +72,10 @@ DEFAULT_PARAMETERS_TYPES = {
         "cells_per_ct": int,
         "bootstrap_n_seeds": int,
         "bootstrap_seed": int,
+        "permutations": str, # file with adata.obs.index as index and one boolean column for each permutation
     },
     "selection": {
-        "method": str, # this one is special as it's separate from the selection_param 
+        "method": str, # this one is special as it's separate from the selection_param
         "n": int,
         "ct_key": str,
         "gene_key": str,
@@ -94,7 +99,7 @@ EVALUATION_METRICS = [
 ]
 
 class ConfigParser():
-    
+
     def __init__(self, config: dict, save_files: bool = True) -> None:
         """
         Parse the config file and generate the final file names
@@ -555,6 +560,10 @@ class ConfigParser():
                 return [None]
             else:
                 return [seed for seed in range(values[0])]
+        elif param == "permutations":
+            permutations = pd.read_csv(values[0], index_col=0)
+            perm_path = os.path.relpath(values[0])
+            return [perm_path + ":" + str(col) for col in permutations.columns]
 
     def _selection_pseudo_parameter_conversion(self, param: str, values: list) -> list:
         """Convert pseudo parameters to actual parameters
@@ -878,7 +887,7 @@ class ConfigParser():
                 names = [batch_dict["metrics"]] 
                                
             for metric in names:
-                if metric not in EVALUATION_METRICS:
+                if metric not in EVALUATION_METRICS and not metric.startswith("knn_overlap_X") or metric.startswith("weighted_knn_overlap_X"):
                     not_supported.append(metric)
                 
         not_supported = list(set(not_supported))

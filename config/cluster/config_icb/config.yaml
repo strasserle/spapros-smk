@@ -21,3 +21,4 @@ singularity-args:
 jobs: 130
 keep-going: True
 restart-times: 2
+cluster_cancel: scancel
