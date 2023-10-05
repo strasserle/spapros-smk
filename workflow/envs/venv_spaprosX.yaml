@@ -4,4 +4,4 @@ channels:
   - defaults
 dependencies:
   - pip:
-    - git+https://github.com:strasserle/spaprosX.git
+    - git+https://github.com/strasserle/spaprosX.git
