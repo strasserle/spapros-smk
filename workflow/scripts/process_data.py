@@ -36,7 +36,7 @@ def main():
     cells_per_ct_seed = int(params["cells_per_ct_seed"]) if params["cells_per_ct_seed"] != "None" else None
     cells_per_ct = int(params["cells_per_ct"]) if params["cells_per_ct"] != "None" else None
     bootstrap_seed = int(params["bootstrap_seed"]) if params["bootstrap_seed"] != "None" else None
-    permutation = str(params("permutation")) if params["permutation"] != "None" else None
+    permutation = str(params["permutation"]) if params["permutation"] != "None" else None
     
     # Load data
     adata = sc.read(args.data)
