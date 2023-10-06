@@ -24,7 +24,8 @@ DEFAULT_PARAMETERS = {
         "bootstrap_n_seeds": None, # Pseudo parameter
         "bootstrap_seed": None,
         "permutations": None, # this param can be used for the permutation experiment: file with adata.obs.index as
-                              # index and one boolean column for each permutation
+                              # index and one boolean column for each permutation, Pseudo parameter
+        "permutation": None, # <file_name>_<column_name>
 
     },
     "selection": {
@@ -73,6 +74,7 @@ DEFAULT_PARAMETERS_TYPES = {
         "bootstrap_n_seeds": int,
         "bootstrap_seed": int,
         "permutations": str, # file with adata.obs.index as index and one boolean column for each permutation
+        "permutation": str, # <file_name>_<column_name>
     },
     "selection": {
         "method": str, # this one is special as it's separate from the selection_param
