@@ -13,6 +13,7 @@ selections:
     dataset_param:
       processing: [lognorm]
       permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut.csv]
+      ct_key: [cell_type]
     selection_param:
       n: [50]
       method_specific_processing: [False]
