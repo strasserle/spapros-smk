@@ -66,7 +66,7 @@ def main():
         if permutation_id not in permutations.columns:
             raise ValueError(f"Permutation id {permutation_id} not in {permutation_file}^.")
         permutation_mask = permutations[permutation_id]
-        adata = adata[adata.obs[permutation_mask]]
+        adata = adata[permutation_mask]
     
     # Subset to n cell types
     if n_cts is not None:
