@@ -15,7 +15,7 @@ selections:
       permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut.csv]
     selection_param:
       n: [50]
-      method_specific_processing: [True]
+      method_specific_processing: [False]
       ct_key: [cell_type]
       batch_key: [id] # the default behaviour is batch_key=None
     methods:
@@ -28,7 +28,7 @@ selections:
     selection_param:
 #      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
       n: [25, 50, 100, 200, 500, 1000]
-      method_specific_processing: [True]
+      method_specific_processing: [False]
       ct_key: [cell_type]
       batch_key: [id] # the default behaviour is batch_key=None
     methods:
