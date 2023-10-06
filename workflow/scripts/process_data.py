@@ -62,7 +62,7 @@ def main():
     # Subset for permutation experiment
     if permutation is not None:
         permutation_file, permutation_id = permutation.split(":")
-        permutations = pd.read_csv(permutation_file)
+        permutations = pd.read_csv(permutation_file, index_col=0)
         if permutation_id not in permutations.columns:
             raise ValueError(f"Permutation id {permutation_id} not in {permutation_file}^.")
         permutation_mask = permutations[permutation_id]
