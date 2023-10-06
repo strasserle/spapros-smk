@@ -21,4 +21,3 @@ singularity-args:
 jobs: 3
 keep-going: True
 restart-times: 2
-cluster_cancel: scancel
