@@ -67,7 +67,7 @@ def main():
         celltype_key=ct_key,
         scheme="custom", 
         metrics=[metric] if (eval_step != "summary") else [],
-        reference_name=eval_dataset 
+        reference_name=eval_dataset,
     )
     
     end = time.time()
@@ -80,11 +80,16 @@ def main():
     print("\n Evaluation step: ", eval_step, "\n#######################################")
     start = time.time()
     print(f"Start evaluation at {start}, i.e. {time.ctime()}")
-    
+
     if eval_step == "shared":
         evaluator.compute_or_load_shared_results()
     
     elif eval_step in ["pre", "main"]:
+        # TODO remove after debugging
+        print(f"running step {eval_step} for {selection_name}")
+        print("evaluator.dir: ", evaluator.dir)
+        print("res_file: ", evaluator._res_file(metric, selection_name, pre=True))
+        print("metrics: ", evaluator.metrics)
         df = pd.read_csv(Path(output_dir, "selection", f"{selection_name}.csv"), index_col=0)
         gene_set = df[df.iloc[:,0]].index.to_list()
         evaluator.evaluate_probeset(gene_set, selection_name, pre_only=(eval_step == "pre"), update_summary=False)
