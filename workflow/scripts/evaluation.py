@@ -116,7 +116,16 @@ def main():
             print("smk metrics: ", metrics)
             evaluator.metrics = list(metrics) 
             evaluator.results = {m:{} for m in metrics}
+            # Enable this trick for batch-aware metrics (note that currently, batch-aware evaluation is envoked by
+            # specifying the batch_key in the metric name, i.e. metric_X_batch-key, in the future we could add the param
+            # batch_key to the pipeline; then it is used for all metrics (that end with _X)).
+            for metric in metrics:
+                if "_X_" in metric:
+                    if evaluator.batch_keys is None:
+                        evaluator.batch_keys = []
+                    evaluator.batch_keys.append(metric.split("_X_")[1])
             evaluator.metrics_params = evaluator._prepare_metrics_params({})
+            print("smk metric params: ", evaluator.metrics_params)
             evaluator.summary_statistics(set_ids=set_ids)
 
     end = time.time()
