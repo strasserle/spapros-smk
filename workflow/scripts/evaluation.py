@@ -116,7 +116,7 @@ def main():
             print("smk metrics: ", metrics)
             evaluator.metrics = list(metrics) 
             evaluator.results = {m:{} for m in metrics}
-
+            evaluator.metrics_params = evaluator._prepare_metrics_params({})
             evaluator.summary_statistics(set_ids=set_ids)
 
     end = time.time()
