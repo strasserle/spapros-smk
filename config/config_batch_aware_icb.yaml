@@ -8,33 +8,33 @@ PRELIMINARY_EVAL_SUMMARY: False # Whether to just summarise the currently availa
 # NOTE: PRELIMINARY_EVAL_SUMMARY can lead to wrong values for set ids that partially miss evaluation files!!!
 
 selections:
-  batch_permutations:
-    datasets: [liver]
-    dataset_param:
-      processing: [lognorm]
-      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut.csv]
-      ct_key: [cell_type]
-    selection_param:
-      n: [50]
-      method_specific_processing: [False]
-      ct_key: [cell_type]
-      batch_key: [id] # the default behaviour is batch_key=None
-    methods:
-      spapros
-  batch_one_dataset:
-    datasets: [liver]
-    dataset_param:
-      processing: [lognorm]
-      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_one.csv]
-      ct_key: [ cell_type ]
-    selection_param:
-#      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
-      n: [25, 50, 100, 200, 500, 1000]
-      method_specific_processing: [False]
-      ct_key: [cell_type]
-      batch_key: [id] # the default behaviour is batch_key=None
-    methods:
-      spapros
+#  batch_permutations:
+#    datasets: [liver]
+#    dataset_param:
+#      processing: [lognorm]
+#      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut.csv]
+#      ct_key: [cell_type]
+#    selection_param:
+#      n: [50]
+#      method_specific_processing: [False]
+#      ct_key: [cell_type]
+#      batch_key: [id] # the default behaviour is batch_key=None
+#    methods:
+#      spapros
+#  batch_one_dataset:
+#    datasets: [liver]
+#    dataset_param:
+#      processing: [lognorm]
+#      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_one.csv]
+#      ct_key: [ cell_type ]
+#    selection_param:
+##      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
+#      n: [25, 50, 100, 200, 500, 1000]
+#      method_specific_processing: [False]
+#      ct_key: [cell_type]
+#      batch_key: [id] # the default behaviour is batch_key=None
+#    methods:
+#      spapros
   batch_permutations_bone_marrow:
     datasets: [ bone_marrow ]
     dataset_param:
@@ -91,32 +91,32 @@ selections:
       spapros
 
 evaluations:
-  eval_on_full:
-    batches: [batch_permutations]
-    selection_dataset: False
-    datasets: [liver]
-    dataset_param:
-      processing: [lognorm]
-      ct_key: [ cell_type ]
-    metrics: [forest_clfs]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_on_one:
-    batches: [batch_permutations]
-    selection_dataset: False
-    datasets: [liver]
-    dataset_param:
-      processing: [lognorm]
-      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_ones.csv]
-      ct_key: [ cell_type ]
-    metrics: [forest_clfs]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_var_one:
-    batches: [batch_one_dataset]
-    selection_dataset: False
-    datasets: [liver]
-    dataset_param:
-      processing: [lognorm]
-      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_ones.csv]
-      ct_key: [ cell_type ]
-    metrics: [forest_clfs, knn_overlap_X_id]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_on_full:
+#    batches: [batch_permutations]
+#    selection_dataset: False
+#    datasets: [liver]
+#    dataset_param:
+#      processing: [lognorm]
+#      ct_key: [ cell_type ]
+#    metrics: [forest_clfs]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_on_one:
+#    batches: [batch_permutations]
+#    selection_dataset: False
+#    datasets: [liver]
+#    dataset_param:
+#      processing: [lognorm]
+#      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_ones.csv]
+#      ct_key: [ cell_type ]
+#    metrics: [forest_clfs]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_var_one:
+#    batches: [batch_one_dataset]
+#    selection_dataset: False
+#    datasets: [liver]
+#    dataset_param:
+#      processing: [lognorm]
+#      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_ones.csv]
+#      ct_key: [ cell_type ]
+#    metrics: [forest_clfs, knn_overlap_X_id]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_on_full_bone_marrow:
     batches: [ batch_permutations_bone_marrow ]
     selection_dataset: False
