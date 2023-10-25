@@ -130,7 +130,7 @@ evaluations:
     datasets: [ bone_marrow ]
     dataset_param:
       processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_ones.csv ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
       ct_key: [ cell_type ]
     metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_var_one_bone_marrow:
@@ -139,7 +139,7 @@ evaluations:
     datasets: [ bone_marrow ]
     dataset_param:
       processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_ones.csv ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
       ct_key: [ cell_type ]
     metrics: [ forest_clfs, knn_overlap_X_id ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_on_full_liver_four:
@@ -156,7 +156,7 @@ evaluations:
     datasets: [ liver_four ]
     dataset_param:
       processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_ones.csv ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
       ct_key: [ cell_type ]
     metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_var_one_liver_four:
@@ -165,6 +165,6 @@ evaluations:
     datasets: [ liver_four ]
     dataset_param:
       processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_ones.csv ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
       ct_key: [ cell_type ]
     metrics: [ forest_clfs, knn_overlap_X_id ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
