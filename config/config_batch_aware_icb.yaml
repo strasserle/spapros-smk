@@ -84,7 +84,7 @@ selections:
       ct_key: [ cell_type ]
     selection_param:
 #      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
-      n: [25, 50, 100, 200, 500, 1000]
+      n: [25, 50, 100, 200, 500, 1000, 2000, 5000, 8000]
       method_specific_processing: [False]
       ct_key: [cell_type]
       batch_key: [id] # the default behaviour is batch_key=None
