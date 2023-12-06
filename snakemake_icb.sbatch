@@ -20,4 +20,4 @@ snakemake --profile config/cluster/config_icb
 # and in cmd line: bash snakemake_icb.sbatch
 
 # or submit jobs without main snakemake job in cmd line using:
-# snakemake --profile config/cluster/
+# snakemake --profile config/cluster/config_icb

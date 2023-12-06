@@ -143,7 +143,7 @@ evaluations:
       processing: [ lognorm ]
       permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
       ct_key: [ cell_type ]
-    metrics: [ forest_clfs, knn_overlap_X_id ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+    metrics: [ forest_clfs, knn_overlap_X_id, cluster_similarity ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_on_full_liver_four:
     batches: [ batch_permutations_four ]
     selection_dataset: False
@@ -169,4 +169,4 @@ evaluations:
       processing: [ lognorm ]
       permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
       ct_key: [ cell_type ]
-    metrics: [ forest_clfs, knn_overlap_X_id ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+    metrics: [ forest_clfs, knn_overlap_X_id, cluster_similarity ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
