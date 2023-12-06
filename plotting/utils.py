@@ -3,12 +3,12 @@ import os
 import re
 
 
-def check_selected_n(results_dir):
+def check_selected_n(results_dir, verbosity=1):
     """Checks whether the number of selected genes equals the requested n.
 
     Args:
         results_dir: Absolute path of results directory.
-
+        verbosity: 0: no output, 1: print if selected_n != requested_n, 2: print check for each selection
     Returns:
 
     """
@@ -24,9 +24,9 @@ def check_selected_n(results_dir):
         selected_n = selection.sum()[0]
         selection_name = os.path.basename(sel_file_path).rstrip(".csv")
         requested_n = get_n_from_params(selection_name, selection_params)
-        if selected_n != requested_n:
+        if selected_n != requested_n and verbosity > 0:
             print(f"Selected {selected_n} genes for {selection_name} but requested {requested_n}.")
-        else:
+        elif verbosity > 1:
             print(f"Selected {selected_n} genes for {selection_name} as requested.")
 
 
