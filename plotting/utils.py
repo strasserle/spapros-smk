@@ -16,7 +16,7 @@ def check_selected_n(results_dir):
     selection_params = pd.read_csv(os.path.join(selection_params_file), index_col=0)
     sel_dir = os.path.join(results_dir, "selection")
     for sel_file_path in os.listdir(sel_dir):
-        if sel_file_path.endswith("_info.csv"):
+        if not os.path.isfile(sel_file_path) or sel_file_path.endswith("_info.csv"):
             continue
         selection = pd.read_csv(os.path.join(sel_dir, sel_file_path), index_col=0)
         if len(selection.columns) > 1:
