@@ -26,6 +26,8 @@ def check_selected_n(results_dir):
         requested_n = get_n_from_params(selection_name, selection_params)
         if selected_n != requested_n:
             print(f"Selected {selected_n} genes for {selection_name} but requested {requested_n}.")
+        else:
+            print(f"Selected {selected_n} genes for {selection_name} as requested.")
 
 
 
