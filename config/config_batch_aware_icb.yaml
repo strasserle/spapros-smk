@@ -35,18 +35,18 @@ selections:
 #      batch_key: [id] # the default behaviour is batch_key=None
 #    methods:
 #      spapros
-  batch_permutations_bone_marrow:
-    datasets: [ bone_marrow ]
-    dataset_param:
-      processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut.csv ]
-      ct_key: [ cell_type ]
-    selection_param:
-      n: [ 50 ]
-      method_specific_processing: [ False ]
-      ct_key: [ cell_type ]
-      batch_key: [ id ] # the default behaviour is batch_key=None
-    methods:
+#  batch_permutations_bone_marrow:
+#    datasets: [ bone_marrow ]
+#    dataset_param:
+#      processing: [ lognorm ]
+#      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut.csv ]
+#      ct_key: [ cell_type ]
+#    selection_param:
+#      n: [ 50 ]
+#      method_specific_processing: [ False ]
+#      ct_key: [ cell_type ]
+#      batch_key: [ id ] # the default behaviour is batch_key=None
+#    methods:
       spapros
   batch_one_dataset_bone_marrow:
     datasets: [ bone_marrow ]
@@ -56,26 +56,41 @@ selections:
       ct_key: [ cell_type ]
     selection_param:
       #      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
-      n: [ 25, 50, 100, 200, 500, 1000, 2000, 5000, 8000]
+      n: [ 25, 50, 100, 200, 500, 1000, 2000, 5000]
 #      n: [25, 50, 100, 125, 250, 500, 1000, 2000, 4000, 8000]
       method_specific_processing: [ False ]
       ct_key: [ cell_type ]
       batch_key: [ id ] # the default behaviour is batch_key=None
     methods:
       spapros
-  batch_permutations_four:
-    datasets: [liver_four]
+  batch_pseudo_bone_marrow:
+    datasets: [ bone_marrow ]
     dataset_param:
-      processing: [lognorm]
-      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut.csv]
-      ct_key: [cell_type]
+      processing: [ lognorm ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
+      ct_key: [ cell_type ]
     selection_param:
-      n: [50]
-      method_specific_processing: [False]
-      ct_key: [cell_type]
-      batch_key: [id] # the default behaviour is batch_key=None
+      #      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
+      n: [ 8000 ]
+      #      n: [25, 50, 100, 125, 250, 500, 1000, 2000, 4000, 8000]
+      method_specific_processing: [ False ]
+      ct_key: [ cell_type ]
+      batch_key: [ id ] # the default behaviour is batch_key=None
     methods:
-      spapros
+      pseudo
+#  batch_permutations_four:
+#    datasets: [liver_four]
+#    dataset_param:
+#      processing: [lognorm]
+#      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut.csv]
+#      ct_key: [cell_type]
+#    selection_param:
+#      n: [50]
+#      method_specific_processing: [False]
+#      ct_key: [cell_type]
+#      batch_key: [id] # the default behaviour is batch_key=None
+#    methods:
+#      spapros
   batch_one_dataset_four:
     datasets: [liver_four]
     dataset_param:
@@ -84,12 +99,25 @@ selections:
       ct_key: [ cell_type ]
     selection_param:
 #      n: [10, 15, 25, 50, 75, 100, 150, 200, 500, 1000]
-      n: [25, 50, 100, 200, 500, 1000, 2000, 5000, 8000]
+      n: [25, 50, 100, 200, 500, 1000, 2000, 5000]
       method_specific_processing: [False]
       ct_key: [cell_type]
       batch_key: [id] # the default behaviour is batch_key=None
     methods:
       spapros
+  batch_pseudo_four:
+    datasets: [ liver_four ]
+    dataset_param:
+      processing: [ lognorm ]
+      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
+      ct_key: [ cell_type ]
+    selection_param:
+      n: [ 8000 ]
+      method_specific_processing: [ False ]
+      ct_key: [ cell_type ]
+      batch_key: [ id ] # the default behaviour is batch_key=None
+    methods:
+      pseudo
 
 evaluations:
 #  eval_on_full:
@@ -118,25 +146,25 @@ evaluations:
 #      permutations: [/lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_ones.csv]
 #      ct_key: [ cell_type ]
 #    metrics: [forest_clfs, knn_overlap_X_id]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_on_full_bone_marrow:
-    batches: [ batch_permutations_bone_marrow ]
-    selection_dataset: False
-    datasets: [ bone_marrow ]
-    dataset_param:
-      processing: [ lognorm ]
-      ct_key: [ cell_type ]
-    metrics: [ forest_clfs ]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_on_one_bone_marrow:
-    batches: [ batch_permutations_bone_marrow ]
-    selection_dataset: False
-    datasets: [ bone_marrow ]
-    dataset_param:
-      processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
-      ct_key: [ cell_type ]
-    metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_on_full_bone_marrow:
+#    batches: [ batch_permutations_bone_marrow ]
+#    selection_dataset: False
+#    datasets: [ bone_marrow ]
+#    dataset_param:
+#      processing: [ lognorm ]
+#      ct_key: [ cell_type ]
+#    metrics: [ forest_clfs ]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_on_one_bone_marrow:
+#    batches: [ batch_permutations_bone_marrow ]
+#    selection_dataset: False
+#    datasets: [ bone_marrow ]
+#    dataset_param:
+#      processing: [ lognorm ]
+#      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/bone_marrow_permut_one.csv ]
+#      ct_key: [ cell_type ]
+#    metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_var_one_bone_marrow:
-    batches: [ batch_one_dataset_bone_marrow ]
+    batches: [ batch_one_dataset_bone_marrow, batch_pseudo_bone_marrow ]
     selection_dataset: False
     datasets: [ bone_marrow ]
     dataset_param:
@@ -152,21 +180,21 @@ evaluations:
       processing: [ lognorm ]
       ct_key: [ cell_type ]
     metrics: [ forest_clfs ]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_on_one_liver_four:
-    batches: [ batch_permutations_four ]
-    selection_dataset: False
-    datasets: [ liver_four ]
-    dataset_param:
-      processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
-      ct_key: [ cell_type ]
-    metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
-  eval_var_one_liver_four:
-    batches: [ batch_one_dataset_four ]
-    selection_dataset: False
-    datasets: [ liver_four ]
-    dataset_param:
-      processing: [ lognorm ]
-      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
-      ct_key: [ cell_type ]
-    metrics: [ forest_clfs, knn_overlap_X_id, cluster_similarity ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_on_one_liver_four:
+#    batches: [ batch_permutations_four, batch_pseudo_four ]
+#    selection_dataset: False
+#    datasets: [ liver_four ]
+#    dataset_param:
+#      processing: [ lognorm ]
+#      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
+#      ct_key: [ cell_type ]
+#    metrics: [ forest_clfs ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+#  eval_var_one_liver_four:
+#    batches: [ batch_one_dataset_four ]
+#    selection_dataset: False
+#    datasets: [ liver_four ]
+#    dataset_param:
+#      processing: [ lognorm ]
+#      permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_four_permut_one.csv ]
+#      ct_key: [ cell_type ]
+#    metrics: [ forest_clfs, knn_overlap_X_id, cluster_similarity ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]

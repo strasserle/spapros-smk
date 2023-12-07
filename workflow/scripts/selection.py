@@ -298,7 +298,12 @@ def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_cs
         if proc:
             adata = preprocess_adata_triku(adata)
         selection, computation_time = select_genes_triku(n, adata, **kwargs)
-    
+
+    # Pseudo (all genes)
+    elif method == "pseudo":
+        start = time.time()
+        selection = pd.DataFrame({"idx": adata.var['idx'], "selection": True})
+        computation_time = time.time() - start
     
     return selection, computation_time
     
