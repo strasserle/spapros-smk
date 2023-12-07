@@ -47,7 +47,7 @@ selections:
 #      ct_key: [ cell_type ]
 #      batch_key: [ id ] # the default behaviour is batch_key=None
 #    methods:
-      spapros
+#      spapros
   batch_one_dataset_bone_marrow:
     datasets: [ bone_marrow ]
     dataset_param:
