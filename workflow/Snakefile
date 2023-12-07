@@ -81,6 +81,31 @@ rule selection_spapros:
         "-id {wildcards.selection_id} "
         "-f {params.selection_params_file} "
         "-s {params.save_method_specific_output}"
+
+rule selection_pseudo:
+    threads: 12
+    input:
+        expand("{data_dir}/{{dataset}}_{{data_id}}.h5ad", data_dir=config['DATA_DIR_TMP'])
+    output:
+        expand("{results_dir}/selection/pseudo_{{selection_id}}_{{dataset}}_{{data_id}}.csv", results_dir=config['RESULTS_DIR'])
+    benchmark:
+        f"{config['RESULTS_DIR']}/benchmarks/selection/pseudo_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
+    conda:
+        # "envs/venv_spaprosX.yaml"
+         "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
+    log:
+        "logs/selections/pseudo_{selection_id}_{dataset}_{data_id}.txt"
+    params:
+        selection_params_file = parser.selection_params_file,
+        save_method_specific_output = config['SAVE_METHOD_SPECIFIC_OUTPUT']
+    shell:
+        "python workflow/scripts/selection.py "
+        "--data {input} "
+        "-o {output} "
+        "--method pseudo "
+        "-id {wildcards.selection_id} "
+        "-f {params.selection_params_file} "
+        "-s {params.save_method_specific_output}"
         
 rule selection_spaproscto: 
     threads: 12
