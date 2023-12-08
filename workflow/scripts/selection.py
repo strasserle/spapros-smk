@@ -302,7 +302,7 @@ def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_cs
     # Pseudo (all genes)
     elif method == "pseudo":
         start = time.time()
-        selection = pd.DataFrame({"idx": adata.var['idx'], "selection": True})
+        selection = pd.DataFrame({"idx": range(adata.shape[1]), "selection": True})
         computation_time = time.time() - start
     
     return selection, computation_time
