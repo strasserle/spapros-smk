@@ -66,8 +66,8 @@ rule selection_spapros:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/spapros_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        # "envs/venv_spaprosX.yaml"
-         "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
+        "envs/venv_spaprosX.yaml"
+         # "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
     log:
         "logs/selections/spapros_{selection_id}_{dataset}_{data_id}.txt"
     params:
@@ -91,8 +91,8 @@ rule selection_pseudo:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/pseudo_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        # "envs/venv_spaprosX.yaml"
-         "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
+        "envs/venv_spaprosX.yaml"
+         # "spaprosX" # TODO add envs/venv_spaprosX.yaml after pull request is merged
     log:
         "logs/selections/pseudo_{selection_id}_{dataset}_{data_id}.txt"
     params:
@@ -116,7 +116,7 @@ rule selection_spaproscto:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/spaproscto_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     log:
         "logs/selections/spaproscto_{selection_id}_{dataset}_{data_id}.txt"
     params:
@@ -140,7 +140,7 @@ rule selection_DE:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/DE_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     log:
         "logs/selections/DE_{selection_id}_{dataset}_{data_id}.txt"
     params:
@@ -163,7 +163,7 @@ rule selection_pca:
     benchmark:
         f"{config['RESULTS_DIR']}/benchmarks/selection/pca_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     threads: 12        
     log:
         "logs/selections/pca_{selection_id}_{dataset}_{data_id}.txt"
@@ -439,7 +439,7 @@ rule eval0_shared:
         f"{config['RESULTS_DIR']}/benchmarks/evaluation/eval0_{{eval_dataset}}_{{eval_data_id}}_{{metric}}.benchmark.txt"
     threads: 12    
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     params:
         data_path = config['DATA_DIR_TMP'] + "/{eval_dataset}_{eval_data_id}.h5ad",
         results_dir = config['RESULTS_DIR'],
@@ -462,7 +462,9 @@ rule eval1_pre:
         f"{config['RESULTS_DIR']}/benchmarks/evaluation/eval1_{{metric}}_{{eval_dataset}}_{{eval_data_id}}_{{method}}_{{selection_id}}_{{dataset}}_{{data_id}}_pre.benchmark.txt"
     threads: 12    
     conda:
-        "spaprosX"
+        lambda wildcards: "envs/venv_rapids_spapros.yml" if wildcards.metric == "cluster_similarity" else "envs/venv_spaprosX.yaml"
+    resources:
+        gpu=lambda wildcards: 1 if wildcards.metric == "cluster_similarity" else 0
     params:
         results_dir = config['RESULTS_DIR'],
         selection_name = "{method}_{selection_id}_{dataset}_{data_id}",
@@ -512,7 +514,7 @@ rule eval2_main:
         f"{config['RESULTS_DIR']}/benchmarks/evaluation/eval2_{{metric}}_{{eval_dataset}}_{{eval_data_id}}_{{method}}_{{selection_id}}_{{dataset}}_{{data_id}}.benchmark.txt"
     threads: 12    
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     params:
         results_dir = config['RESULTS_DIR'],
         selection_name = "{method}_{selection_id}_{dataset}_{data_id}",
@@ -544,7 +546,7 @@ rule eval3_summary:
         f"{config['RESULTS_DIR']}/benchmarks/evaluation/eval3_{{eval_dataset}}_{{eval_data_id}}_summary.benchmark.txt"
     threads: 12    
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     params:
         results_dir = config['RESULTS_DIR'],
         evaluation_overview_file = parser.evaluation_overview_file,
@@ -566,7 +568,7 @@ rule special_prelim_eval3_summary:
         expand("{results_dir}/evaluation/prelim_summary/{{eval_dataset}}_{{eval_data_id}}_summary.csv", results_dir=config['RESULTS_DIR'])
     threads: 12    
     conda:
-        "spaprosX"
+        "envs/venv_spaprosX.yaml"
     params:
         results_dir = config['RESULTS_DIR'],
         evaluation_overview_file = parser.evaluation_overview_file,

@@ -1,0 +1,20 @@
+name: rapids_spapros
+channels:
+ - rapidsai
+ - nvidia
+ - conda-forge
+ - bioconda
+dependencies:
+ - rapids
+ - python=3.9
+ - cudatoolkit
+ - cupy
+ - cudnn
+ - cutensor
+ - cusparselt
+ - leidenalg
+ - fa2
+ - pip
+ - pip:
+    - spapros
+    - rapids-singlecell
