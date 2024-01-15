@@ -3,5 +3,6 @@ channels:
   - bioconda
   - defaults
 dependencies:
+  - pip
   - pip:
     - git+https://github.com/strasserle/spaprosX.git

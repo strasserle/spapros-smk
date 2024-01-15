@@ -494,7 +494,11 @@ rule eval1_pre:
         f"{config['RESULTS_DIR']}/benchmarks/evaluation/eval1_{{metric}}_{{eval_dataset}}_{{eval_data_id}}_{{method}}_{{selection_id}}_{{dataset}}_{{data_id}}_pre.benchmark.txt"
     threads: 12    
     conda:
-        "spaprosX"
+        lambda wildcards: get_conda(wildcards)
+    resources:
+        gpus=lambda wildcards: get_resources(wildcards)["gpus"],
+        partition=lambda wildcards: get_resources(wildcards)["partition"],
+        qos=lambda wildcards: get_resources(wildcards)["qos"]
     params:
         results_dir = config['RESULTS_DIR'],
         selection_name = "{method}_{selection_id}_{dataset}_{data_id}",
