@@ -146,7 +146,7 @@ selections:
     methods:
       spapros
   batch_pseudo_HLCA:
-    datasets: [ HCLA ]
+    datasets: [ HLCA ]
     dataset_param:
       processing: [ lognorm ]
       permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/HLCA_permut_one.csv ]
