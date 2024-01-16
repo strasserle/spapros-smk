@@ -49,7 +49,7 @@ selections:
     dataset_param:
       bootstrap_n_seeds: [5]
     selection_param:
-      n: [50,75,100,150,200,300,400,500,1000,2000]
+      n: [2,5,10,15,20,30,50,75,100,150,200,300,400,500,1000,2000]
       gene_key: ["merfish_gene"] #[None, "merfish_gene"]
     methods:
       spapros
@@ -99,4 +99,19 @@ evaluations:
     dataset_param:
       processing: [lognorm]
       ct_key: [clean_type]
+    metrics: [knn_overlap, forest_clfs]
+  eval_batch_Q3.7_sn:
+    batches: [batchQ3.7]
+    selection_dataset: True
+    datasets: []
+    dataset_param:
+      processing: [lognorm]
+    metrics: [knn_overlap, forest_clfs]
+  eval_batch_Q3.7_sn_2:
+    batches: [batchQ3.7]
+    selection_dataset: True
+    datasets: []
+    dataset_param:
+      processing: [lognorm]
+      ct_key: [subclass_label]
     metrics: [knn_overlap, forest_clfs]
