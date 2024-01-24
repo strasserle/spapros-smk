@@ -48,6 +48,7 @@ def main():
     ct_key = str(params["ct_key"]) if params["ct_key"] != "None" else None
     gene_key = str(params["gene_key"]) if params["gene_key"] != "None" else None
     proc = True if (params["method_specific_processing"] in ["True", True]) else False
+    batch_key = str(params["batch_key"]) if params["batch_key"] != "None" else None
     
     kwargs = {} # we might want to extend the pipeline to method specific parameters
     
@@ -62,7 +63,7 @@ def main():
     
     # Run selection
     selection, computation_time = run_selection(
-        args.method, adata, n, ct_key, gene_key, proc, kwargs, 
+        args.method, adata, n, ct_key, gene_key, proc, batch_key, kwargs,
         selection_csv, save_specific_output=save_specific_output
     )
     
@@ -78,7 +79,7 @@ def main():
     df_info.to_csv(info_csv)
     
     
-def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_csv, save_specific_output=False):
+def run_selection(method, adata, n, ct_key, gene_key, proc, batch_key, kwargs, selection_csv, save_specific_output=False):
     """
     """
     
@@ -97,6 +98,8 @@ def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_cs
         kwargs["genes_key"] = gene_key
         if save_specific_output:
             kwargs["save_dir"] = specific_dir
+        if batch_key is not None:
+            kwargs["batch_key"] = batch_key
             
         selector = sp.se.ProbesetSelector(adata,ct_key,n=n,**kwargs,verbosity=0,n_jobs=-1)
         start = time.time()
@@ -206,6 +209,8 @@ def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_cs
         if proc:
             adata = preprocess_adata_scmer(adata, n_pcs=30, subsample=10000)
         kwargs["n_threads"] = -1
+        if batch_key is not None:
+            kwargs["batch_key"] = [batch_key]
         selection_scmer, computation_time = select_genes_scmer(n, adata, **kwargs)
         
         if len(selection_scmer) == n:
@@ -255,6 +260,8 @@ def run_selection(method, adata, n, ct_key, gene_key, proc, kwargs, selection_cs
         from selection_methods.gene_selection_genebasis import select_genes_genebasis
         if proc:
             adata = preprocess_adata(adata)
+        if batch_key is not None:
+            kwargs["batch_key"] = batch_key
         tmp_dir.mkdir(parents=True, exist_ok=True)
         #tmp_dir = os.path.join(out_dir, "tmp")
         #conda_env = config["venv"]
