@@ -8,14 +8,23 @@ cluster:
       --output=logs/{rule}_output_%j.txt
       --error=logs/{rule}_output_%j.txt
       --mem={resources.mem_mb}
-      --nice=10000
+      --nice=10
       --time={resources.time}
 default-resources:
       - partition=cpu_p
       - qos=cpu_normal
-      - mem_mb=160000
+      - mem_mb=15000
       - gpus=0
-      - time=48:00:00
+      - time='1:00:00'
+set_resources:
+  eval0_shared_gpu:
+    - partition=gpu
+    - qos=gpu_normal
+    - gpus=1
+  eval1_pre_gpu:
+    - partition=gpu
+    - qos=gpu_normal
+    - gpus=1
 max-threads: 12
 use-conda: True
 use-singularity: True
