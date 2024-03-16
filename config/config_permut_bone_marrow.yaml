@@ -18,7 +18,7 @@ selections:
       n: [ 50 ]
       method_specific_processing: [ False ]
       ct_key: [ cell_type ]
-      batch_key: [ donor_id ] # the default behaviour is batch_key=None
+      batch_key: [ id ] # the default behaviour is batch_key=None
     methods:
       spapros
 
