@@ -49,7 +49,7 @@ def get_n_from_params(selection_name, selection_params):
     return n
 
 
-def get_results_of_batch(eval_batch, results_dir="results", permut_dir=os.getcwd()):
+def get_results_of_batch(eval_batch, results_dir="results", permut_dir=os.getcwd(), overview_dir="results"):
     """Read and merge eval_overview_file, selection_params_file, data_params_file
 
     Args:
@@ -67,9 +67,9 @@ def get_results_of_batch(eval_batch, results_dir="results", permut_dir=os.getcwd
 
     """
 
-    eval_overview_file = os.path.join(results_dir, "evaluation_overview.csv")
-    selection_params_file = os.path.join(results_dir, "selection_parameters.csv")
-    data_params_file = os.path.join(results_dir, "data_parameters.csv")
+    eval_overview_file = os.path.join(overview_dir, "evaluation_overview.csv")
+    selection_params_file = os.path.join(overview_dir, "selection_parameters.csv")
+    data_params_file = os.path.join(overview_dir, "data_parameters.csv")
 
     eval_overview = pd.read_csv(eval_overview_file, index_col=0)
     batch_mask = eval_overview["eval_batch"] == eval_batch
@@ -108,6 +108,9 @@ def get_results_of_batch(eval_batch, results_dir="results", permut_dir=os.getcwd
 
     if len(permutation_files) > 0:
         all_results = pd.merge(all_results, permutations_info, on="permutation_name")
+
+    # sort metrics alphabetically
+    metrics = sorted(metrics)
 
     return all_results, metrics
 

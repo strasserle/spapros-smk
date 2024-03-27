@@ -2,7 +2,7 @@
 from ConfigParser import ConfigParser
 import os
 
-conf_file = 'config/config_batch_aware_icb.yaml'
+conf_file = 'config/config_permut_eye.yaml'
 configfile: conf_file
 
 print("cwd: ", os.getcwd())

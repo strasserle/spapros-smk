@@ -18,7 +18,7 @@ selections:
       n: [ 50 ]
       method_specific_processing: [ False ]
       ct_key: [ cell_type ]
-      batch_key: [ id ] # the default behaviour is batch_key=None
+      batch_key: [ donor_id ] # the default behaviour is batch_key=None
     methods:
       spapros
 
@@ -30,7 +30,7 @@ evaluations:
     dataset_param:
       processing: [ lognorm ]
       ct_key: [ cell_type ]
-    metrics: [ forest_clfs, cluster_similarity ]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+    metrics: [ forest_clfs, cluster_similarity, knn_overlap_X_donor_id ]  # forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
   eval_on_one_liver:
     batches: [ batch_permutations_liver ]
     selection_dataset: False
@@ -39,4 +39,4 @@ evaluations:
       processing: [ lognorm ]
       permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/liver_permut_one.csv ]
       ct_key: [ cell_type ]
-    metrics: [ forest_clfs, cluster_similarity ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]
+    metrics: [ forest_clfs, cluster_similarity, knn_overlap_X_donor_id ]  # [forest_clfs, gene_corr, cluster_similarity, knn_overlap_X]

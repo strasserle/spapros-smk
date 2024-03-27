@@ -1,0 +1,226 @@
+{
+  "columns": [
+    {
+      "minWidth": 40,
+      "download": false,
+      "formatter": "rowSelection",
+      "titleFormatter": "rowSelection",
+      "resizable": true,
+      "headerSort": false,
+      "width": 51
+    },
+    {
+      "field": "",
+      "title": "",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 60
+    },
+    {
+      "field": "forest_clfs accuracy",
+      "title": "forest_clfs accuracy",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 174
+    },
+    {
+      "field": "forest_clfs perct acc > 0.8",
+      "title": "forest_clfs perct acc > 0.8",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 212
+    },
+    {
+      "field": "cluster_similarity nmi_5_20",
+      "title": "cluster_similarity nmi_5_20",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 219
+    },
+    {
+      "field": "cluster_similarity nmi_21_60",
+      "title": "cluster_similarity nmi_21_60",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 226
+    },
+    {
+      "field": "n",
+      "title": "n",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 64
+    },
+    {
+      "field": "eval_dataset",
+      "title": "eval_dataset",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 131
+    },
+    {
+      "field": "selection_data_id",
+      "title": "selection_data_id",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 161
+    },
+    {
+      "field": "data_id",
+      "title": "data_id",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 101
+    },
+    {
+      "field": "dataset",
+      "title": "dataset",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 101
+    },
+    {
+      "field": "processing",
+      "title": "processing",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 122
+    },
+    {
+      "field": "ct_key",
+      "title": "ct_key",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 94
+    },
+    {
+      "field": "n_cts",
+      "title": "n_cts",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 87
+    },
+    {
+      "field": "cells_per_ct_seed",
+      "title": "cells_per_ct_seed",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 160
+    },
+    {
+      "field": "cells_per_ct",
+      "title": "cells_per_ct",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 126
+    },
+    {
+      "field": "bootstrap_seed",
+      "title": "bootstrap_seed",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 151
+    },
+    {
+      "field": "permutation",
+      "title": "permutation",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 675
+    },
+    {
+      "field": "permutation_file",
+      "title": "permutation_file",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 478
+    },
+    {
+      "field": "permutation_name",
+      "title": "permutation_name",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 173
+    },
+    {
+      "field": "n_datasets",
+      "title": "n_datasets",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 121
+    },
+    {
+      "field": "n_permutations",
+      "title": "n_permutations",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 152
+    },
+    {
+      "field": "permutations",
+      "title": "permutations",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 629
+    },
+    {
+      "field": "n_cells",
+      "title": "n_cells",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 96
+    }
+  ],
+  "sort": [
+    {
+      "column": "permutation",
+      "dir": "asc"
+    }
+  ]
+}

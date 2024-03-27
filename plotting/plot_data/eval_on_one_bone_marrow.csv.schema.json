@@ -1,0 +1,122 @@
+{
+  "fields": [
+    {
+      "name": "",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "forest_clfs accuracy",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "forest_clfs perct acc > 0.8",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "cluster_similarity nmi_5_20",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "cluster_similarity nmi_21_60",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "n",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "eval_dataset",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "selection_data_id",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "data_id",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "dataset",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "processing",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "ct_key",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "n_cts",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "cells_per_ct_seed",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "cells_per_ct",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "bootstrap_seed",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "permutation",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "permutation_file",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "permutation_name",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "n_datasets",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "n_permutations",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "permutations",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "n_cells",
+      "type": "integer",
+      "format": "default"
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}
