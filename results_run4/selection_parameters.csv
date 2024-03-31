@@ -1,0 +1,16 @@
+selection_id,method,n,ct_key,gene_key,batch_key,method_specific_processing
+0,spapros,50,cell_type,highly_variable,id,False
+1,spapros,25,cell_type,highly_variable,id,False
+2,spapros,100,cell_type,highly_variable,id,False
+3,spapros,200,cell_type,highly_variable,id,False
+4,spapros,500,cell_type,highly_variable,id,False
+5,spapros,1000,cell_type,highly_variable,id,False
+6,spapros,2000,cell_type,highly_variable,id,False
+7,spapros,5000,cell_type,highly_variable,id,False
+8,spapros,8000,cell_type,highly_variable,id,False
+9,pseudo,8000,cell_type,highly_variable,id,False
+10,spapros,3000,cell_type,highly_variable,id,False
+11,spapros,4000,cell_type,highly_variable,id,False
+12,spapros,6000,cell_type,highly_variable,id,False
+13,spapros,7000,cell_type,highly_variable,id,False
+14,spapros,50,cell_type,highly_variable,donor_id,False
