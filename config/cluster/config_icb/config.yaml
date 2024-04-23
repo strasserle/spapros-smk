@@ -17,11 +17,11 @@ default-resources:
       - gpus=0
 set_resources:
   eval0_shared_gpu:
-    - partition=gpu
+    - partition=gpu_p
     - qos=gpu_normal
     - gpus=1
   eval1_pre_gpu:
-    - partition=gpu
+    - partition=gpu_p
     - qos=gpu_normal
     - gpus=1
 max-threads: 12

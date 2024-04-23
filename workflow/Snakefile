@@ -495,7 +495,10 @@ use rule eval1_pre as eval1_pre_gpu with:
         "spaprosX_rapids"
     wildcard_constraints:
         metric="cluster_similarity"
-
+    resources:
+        partition='gpu_p',
+        qos='gpu_normal',
+        gpus=1
 
 def get_eval_main_inputs(wildcards, results_dir=config['RESULTS_DIR'], data_dir=config['DATA_DIR_TMP']):
     """List up input files for the main evaluation step rule for a given metric

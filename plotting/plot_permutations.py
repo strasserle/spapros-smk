@@ -32,24 +32,35 @@ fig_dir = "plotting/figures/"
 if not os.path.isdir(fig_dir): 
     os.mkdir(fig_dir)
 permut_dir = "/lustre/groups/ml01/workspace/lena.strasser/MA/"
-results_dir = "results"
-overview_dir = "results/bone_marrow_overviews"
+results_dir = "results_run4"
+# overview_dir = "results/bone_marrow_overviews"
+overview_dir = "results_run4"
+
 plot_data_dir = "plotting/plot_data"
 if not os.path.isdir(plot_data_dir):
     os.mkdir(plot_data_dir)
 
 
-dataset = "eye"
+dataset = 'HLCA'
+# dataset = "eye"
 # dataset = "bone_marrow"
 # dataset= "liver_four"
 # dataset = "liver"
-p, metrics = get_results_of_batch(f"eval_on_full_{dataset}", results_dir=results_dir, permut_dir=permut_dir, overview_dir=overview_dir)
-eval_on_one, _ = get_results_of_batch(f"eval_on_one_{dataset}", results_dir=results_dir, permut_dir=permut_dir, overview_dir=overview_dir)
+# p, metrics = get_results_of_batch(f"eval_on_full_{dataset}", results_dir=results_dir, permut_dir=permut_dir, overview_dir=overview_dir)
+eval_on_one, metrics = get_results_of_batch(f"eval_on_one_{dataset}", results_dir=results_dir, permut_dir=permut_dir, overview_dir=overview_dir)
 
 # save
-p.to_csv(os.path.join(plot_data_dir, f"permutations_{dataset}.csv"))
+# file_name_p = os.path.join(plot_data_dir, f"permutations_{dataset}.csv")
+# if not os.path.isfile(file_name_p): 
+#     p.to_csv(file_name_p)
+# else:
+#     raise ValueError(f'File {file_name_p} already existing.')
 print(metrics)
-eval_on_one.to_csv(os.path.join(plot_data_dir, f"eval_on_one_{dataset}.csv"))
+file_name_e = os.path.join(plot_data_dir, f"eval_on_one_{dataset}.csv")
+if not os.path.isfile(file_name_e):
+    eval_on_one.to_csv()
+else:
+    raise ValueError(f'File {file_name_e} already existing.')
 
 # p = pd.read_csv(os.path.join(plot_data_dir, f"permutations_{dataset}"))
 # metrics = {'forest_clfs accuracy', 'forest_clfs perct acc > 0.8'}
@@ -57,32 +68,32 @@ eval_on_one.to_csv(os.path.join(plot_data_dir, f"eval_on_one_{dataset}.csv"))
 
 plt.style.use("fivethirtyeight")
 bg_grey = "#f0f1f0"
-p.sort_values(by=["n_datasets"], inplace=True)
+# p.sort_values(by=["n_datasets"], inplace=True)
 
 # Number of datasets in permutation
-fig = plt.figure(figsize=(10, 18))
-for metric in metrics:
-    plt.plot(p["n_datasets"], p[metric], "x", markersize=10, label=f"{metric} on full dataset")
-    color = plt.gca().get_lines()[-1].get_color()
-    plt.plot(p["n_datasets"].unique(), p[["n_datasets", metric]].groupby(by="n_datasets").mean(), "-x", markersize=10, label=f"{metric} mean over selections", color=color)
-    plt.scatter(eval_on_one["n_datasets"], eval_on_one[metric], s=minmax_norm(eval_on_one["n_cells"], min=10, max=40), label=f"{metric} on single datasets", color=color)
-    plt.plot(eval_on_one["n_datasets"].unique(), eval_on_one[["n_datasets", metric]].groupby(by="n_datasets").mean(), "--o", markersize=10, label=f"{metric} mean over selections and evaluations", color=color)
-legend_1 = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
-legend_sizes = (eval_on_one["n_cells"].min().round(-2), int(eval_on_one["n_cells"].mean().round(-3)), eval_on_one["n_cells"].max().round(-4))
-legend_labels = [str(size) for size in legend_sizes]
-legend_proxies = [plt.Line2D([0], [0], marker='o', color=legend_1.get_frame().get_facecolor(), markerfacecolor='black', markersize=np.sqrt(size), label=label)
-                  for size, label in zip(minmax_norm(pd.Series(legend_sizes), min=10, max=40), legend_labels)]
-ax_1 = plt.gca()
-ax_2 = plt.gca().twinx()
-ax_2.set_axis_off()
-legend_2 = ax_2.legend(handles=legend_proxies, title='Number of cells', loc='upper left', bbox_to_anchor=(1.05, 1))
-plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
-# plt.title("Reference dataset: " + eval_dataset + "\nSelection batch: " + eval_batch)
-plt.title(f"Dataset: {dataset}")
-ax_1.set_ylabel("Performance")
-ax_1.set_xlabel("Number of datasets in permutation")  # Permutation size in selection dataset / Selection on permutation of X datasets
-plt.tight_layout()
-plt.savefig(fig_dir + f"scatterlineplot_performance_vs_n_datasets_{dataset}_with_on_one.png")
+# fig = plt.figure(figsize=(10, 18))
+# for metric in metrics:
+#     plt.plot(p["n_datasets"], p[metric], "x", markersize=10, label=f"{metric} on full dataset")
+#     color = plt.gca().get_lines()[-1].get_color()
+#     plt.plot(p["n_datasets"].unique(), p[["n_datasets", metric]].groupby(by="n_datasets").mean(), "-x", markersize=10, label=f"{metric} mean over selections", color=color)
+#     plt.scatter(eval_on_one["n_datasets"], eval_on_one[metric], s=minmax_norm(eval_on_one["n_cells"], min=10, max=40), label=f"{metric} on single datasets", color=color)
+#     plt.plot(eval_on_one["n_datasets"].unique(), eval_on_one[["n_datasets", metric]].groupby(by="n_datasets").mean(), "--o", markersize=10, label=f"{metric} mean over selections and evaluations", color=color)
+# legend_1 = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
+# legend_sizes = (eval_on_one["n_cells"].min().round(-2), int(eval_on_one["n_cells"].mean().round(-3)), eval_on_one["n_cells"].max().round(-4))
+# legend_labels = [str(size) for size in legend_sizes]
+# legend_proxies = [plt.Line2D([0], [0], marker='o', color=legend_1.get_frame().get_facecolor(), markerfacecolor='black', markersize=np.sqrt(size), label=label)
+#                   for size, label in zip(minmax_norm(pd.Series(legend_sizes), min=10, max=40), legend_labels)]
+# ax_1 = plt.gca()
+# ax_2 = plt.gca().twinx()
+# ax_2.set_axis_off()
+# legend_2 = ax_2.legend(handles=legend_proxies, title='Number of cells', loc='upper left', bbox_to_anchor=(1.05, 1))
+# plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+# # plt.title("Reference dataset: " + eval_dataset + "\nSelection batch: " + eval_batch)
+# plt.title(f"Dataset: {dataset}")
+# ax_1.set_ylabel("Performance")
+# ax_1.set_xlabel("Number of datasets in permutation")  # Permutation size in selection dataset / Selection on permutation of X datasets
+# plt.tight_layout()
+# plt.savefig(fig_dir + f"scatterlineplot_performance_vs_n_datasets_{dataset}_with_on_one.png")
 # plt.show()
 
 # mean per selection, one plot per metric
@@ -98,27 +109,27 @@ for metric, ax, color in zip(metrics, axes, prop_cycle.by_key()['color']):
     ax.plot(mean_eval["n_datasets"].unique(), mean_eval.groupby("n_datasets").mean()[metric], "--x", markersize=15, label=f"{metric} mean over evaluations", color=color)
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.set_title(metric, fontsize=15, pad=20)  # fontweight="bold"
-# legend_1 = axes[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
-# legend_1 = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
-# legend_sizes = (eval_on_one["n_cells"].min().round(-2), int(eval_on_one["n_cells"].mean().round(-3)), eval_on_one["n_cells"].max().round(-4))
-# legend_labels = [str(size) for size in legend_sizes]
-# legend_proxies = [plt.Line2D([0], [0], marker='o', color=legend_1.get_frame().get_facecolor(), markerfacecolor='black', markersize=np.sqrt(size), label=label)
-#                   for size, label in zip(minmax_norm(pd.Series(legend_sizes), min=10, max=40), legend_labels)]
-# ax_1 = plt.gca()
-# ax_2 = plt.gca().twinx()
-# ax_2.set_axis_off()
-# legend_2 = ax_2.legend(handles=legend_proxies, title='Number of cells', loc='upper left', bbox_to_anchor=(1.1, 1))
-# ax_3 = ax_2.twiny()
-# ax_3.set_axis_off()
-# # third legend: one grey dot saying "score per selection" and one dotted line with a dot saying "mean over evaluations" also in grey, below legend_2
-# legend_3 = ax_3.legend(handles=[plt.Line2D([0], [0], marker='o', color=bg_grey, markerfacecolor='grey', markersize=10, label="score per selection"),
-#                                 plt.Line2D([0], [0], marker='x', color='grey', markerfacecolor='grey', markersize=15, linestyle="--", label="mean over evaluations")], loc='upper left', bbox_to_anchor=(1.05, 0.5))
-# # suptitle in same fontsize as axes titles
-# plt.suptitle(f"Dataset: {dataset}", x=0.5, fontsize=ax.title.get_fontsize(), va='center')
-# fig.text(0.4, 0.03, 'Number of datasets in permutation', ha='center', va='center')
-# fig.text(0.02, 0.5, 'Performance', ha='center', va='center', rotation='vertical')
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.07, bottom=0.1)
+legend_1 = axes[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
+legend_1 = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15))
+legend_sizes = (eval_on_one["n_cells"].min().round(-2), int(eval_on_one["n_cells"].mean().round(-3)), eval_on_one["n_cells"].max().round(-4))
+legend_labels = [str(size) for size in legend_sizes]
+legend_proxies = [plt.Line2D([0], [0], marker='o', color=legend_1.get_frame().get_facecolor(), markerfacecolor='black', markersize=np.sqrt(size), label=label)
+                  for size, label in zip(minmax_norm(pd.Series(legend_sizes), min=10, max=40), legend_labels)]
+ax_1 = plt.gca()
+ax_2 = plt.gca().twinx()
+ax_2.set_axis_off()
+legend_2 = ax_2.legend(handles=legend_proxies, title='Number of cells', loc='upper left', bbox_to_anchor=(1.1, 1))
+ax_3 = ax_2.twiny()
+ax_3.set_axis_off()
+# third legend: one grey dot saying "score per selection" and one dotted line with a dot saying "mean over evaluations" also in grey, below legend_2
+legend_3 = ax_3.legend(handles=[plt.Line2D([0], [0], marker='o', color=bg_grey, markerfacecolor='grey', markersize=10, label="score per selection"),
+                                plt.Line2D([0], [0], marker='x', color='grey', markerfacecolor='grey', markersize=15, linestyle="--", label="mean over evaluations")], loc='upper left', bbox_to_anchor=(1.05, 0.5))
+# suptitle in same fontsize as axes titles
+plt.suptitle(f"Dataset: {dataset}", x=0.5, fontsize=ax.title.get_fontsize(), va='center')
+fig.text(0.4, 0.03, 'Number of datasets in permutation', ha='center', va='center')
+fig.text(0.02, 0.5, 'Performance', ha='center', va='center', rotation='vertical')
+plt.tight_layout()
+plt.subplots_adjust(left=0.07, bottom=0.1)
 plt.savefig(fig_dir + f"scatterlineplot_performance_vs_n_datasets_{dataset}_per_sel.png")
 # plt.show()
 
@@ -200,4 +211,59 @@ plt.savefig(fig_dir + f"scatterlineplot_performance_vs_n_datasets_{dataset}_per_
 # plt.tight_layout()
 # plt.savefig(fig_dir + f"scatterlineplot_performance_vs_n_datasets_{eval_dataset}_{eval_batch}_small_mean.png")
 # plt.show()
+
+# e = eval_on_one
+# cmap = {eds: np.random.rand(3,) for eds in e['eval_dataset'].unique()}
+# shapemap = {sel}
+
+# plt.scatter(e['n_datasets'], e['cluster_similarity nmi_21_60'], s=10, c=e['eval_dataset'].map(cmap), label="Evaluation dataset")
+# plt.legend()
+
+# plt.savefig('plotting/figures/tmp1.png')
+
+# import seaborn as sns
+# sns.boxplot(x=e['n_datasets'], y=e['cluster_similarity nmi_21_60'])
+
+# plt.savefig('plotting/figures/tmp2.png')
+
+# f = e[['permutations', 'cluster_similarity nmi_21_60', 'n_datasets', 'permutation_name']].copy()
+# f[[f'ds_{i}' for i in range(7)]]= f['permutations'].str.lstrip("(").str.rstrip().str.rstrip(')').str.rstrip(',').str.split(", ", expand=True)
+# f = f.melt(id_vars=['n_datasets', 'cluster_similarity nmi_21_60', "permutation_name"], value_vars=[f'ds_{i}' for i in range(7)]).dropna(how='any')
+# plt.figure(figsize=(18, 8))
+# sns.boxplot(data=f, x='n_datasets', y='cluster_similarity nmi_21_60', hue="value")
+# plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+# plt.tight_layout()
+# plt.title('Distribution over evaluation datasets and permutations')
+# plt.subplots_adjust(top=0.9)
+# plt.savefig('plotting/figures/tmp3.png')
+
+# del f['variable']
+# mean_f = f.groupby(by=['permutation_name', 'value']).mean()
+# plt.figure(figsize=(18, 8))
+# sns.boxplot(data=mean_f, x='n_datasets', y='cluster_similarity nmi_21_60', hue="value")
+# plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+# plt.tight_layout()
+# plt.title('Distribution over permutations, mean over evaluation datasets')
+# plt.subplots_adjust(top=0.9)
+# plt.savefig('plotting/figures/tmp4.png')
+
+# # mean_f['n_datasets'].value_counts()
+# # n_datasets
+# # 6.0    42
+# # 5.0    35
+# # 4.0    28
+# # 3.0    21
+# # 2.0    14
+# # 1.0     7
+# # 7.0     7
+
+
+
+
+# plt.close('all')
+
+
+
+
+
 
