@@ -1,7 +1,8 @@
 import pandas as pd
 import os
 
-dataset = "bone_marrow"
+# dataset = "bone_marrow"
+dataset="eye"
 plot_data_dir = "plotting/plot_data"
 
 p = pd.read_csv(os.path.join(plot_data_dir, f"permutations_{dataset}.csv"), index_col=0)

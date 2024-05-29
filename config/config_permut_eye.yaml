@@ -15,7 +15,7 @@ selections:
       permutations: [ /lustre/groups/ml01/workspace/lena.strasser/MA/benchmarking/data/test_data/permut_data/eye_permut.csv ]
       ct_key: [ cell_type ]
     selection_param:
-      n: [ 50 ]
+      n: [ 50, 150 ]
       method_specific_processing: [ False ]
       ct_key: [ cell_type ]
       batch_key: [ donor_id ] # the default behaviour is batch_key=None

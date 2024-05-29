@@ -29,6 +29,6 @@ use-conda: True
 use-singularity: True
 singularity-args:
       --bind /home/:/home/,/lustre/:/lustre/,/localscratch/:/localscratch/
-jobs: 80
+jobs: 180
 keep-going: True
 restart-times: 0

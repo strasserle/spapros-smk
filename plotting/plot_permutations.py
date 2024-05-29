@@ -32,17 +32,17 @@ fig_dir = "plotting/figures/"
 if not os.path.isdir(fig_dir): 
     os.mkdir(fig_dir)
 permut_dir = "/lustre/groups/ml01/workspace/lena.strasser/MA/"
-results_dir = "results_run4"
+results_dir = "results"
 # overview_dir = "results/bone_marrow_overviews"
-overview_dir = "results_run4"
+overview_dir = "results"
 
 plot_data_dir = "plotting/plot_data"
 if not os.path.isdir(plot_data_dir):
     os.mkdir(plot_data_dir)
 
 
-dataset = 'HLCA'
-# dataset = "eye"
+# dataset = 'HLCA'
+dataset = "eye"
 # dataset = "bone_marrow"
 # dataset= "liver_four"
 # dataset = "liver"
@@ -99,7 +99,7 @@ bg_grey = "#f0f1f0"
 # mean per selection, one plot per metric
 mean_eval = eval_on_one[["selection_data_id", "n_datasets", "n_cells"] + list(metrics)].groupby(by="selection_data_id").mean()
 # grid: one plot per metric
-fig, axes = plt.subplots(1, len(metrics), figsize=(20, 6))
+fig, axes = plt.subplots(1, len(metrics), figsize=(30, 6))
 # get default color cycle
 prop_cycle = plt.rcParams['axes.prop_cycle']
 for metric, ax, color in zip(metrics, axes, prop_cycle.by_key()['color']):
